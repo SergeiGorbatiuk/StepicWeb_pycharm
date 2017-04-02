@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    {% for q in questions %}
+        <p><a href="{% url "distinctQuestion" q.id %}">{{q.title}}</a></p>
+    {% endfor %}
+</body>
+</html>
