@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{{question.title}}</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-    <h1>{{question.title}}</h1>
-    <h3>{{question.text}}</h3>
-    {%for answer in answers %}
-    <p>{{answer.text}}</p>
-    {% endfor %}
     <form action="" method="post" >
         {% csrf_token %}
         {{ form.as_ul }}

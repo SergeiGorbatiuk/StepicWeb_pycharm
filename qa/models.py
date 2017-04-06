@@ -15,10 +15,13 @@ class Question(models.Model):
     objects = QuestionManager()
     title = models.CharField(max_length = 255)
     text = models.TextField()
-    added_at = models.DateTimeField(blank = True)
+    added_at = models.DateTimeField(blank = True, null=True)
     rating = models.IntegerField(default = 0)
-    author = models.ForeignKey(User, related_name = 'author')
+    author = models.ForeignKey(User, related_name = 'author', null=True)
     likes = models.ManyToManyField(User)
+
+    def get_url(self):
+        return "/question/" + str(self.id)
 
     def __str__(self):
         return self.title
@@ -26,6 +29,9 @@ class Question(models.Model):
 
 class Answer(models.Model):
     text = models.TextField()
-    added_at = models.DateTimeField(blank = True)
+    added_at = models.DateTimeField(blank = True ,null=True )
     question = models.ForeignKey(Question)
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, default=1)
+
+    def get_url(self):
+        return "/question/" + str(self.question.id)
