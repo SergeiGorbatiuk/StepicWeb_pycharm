@@ -53,20 +53,22 @@ def popular_questions(request):
 })
 
 
-@login_required(login_url='/login/')
 def ask(request):
-    if request.method == "POST":
-        form = AskForm(request.POST)
-        form.author = request.user
-        if form.is_valid():
-            question = form.save()
-            url = question.get_url()
-            return HttpResponseRedirect(url)
+    if request.user.is_authenticated():
+        if request.method == "POST":
+            form = AskForm(request.POST)
+            form.author = request.user
+            if form.is_valid():
+                question = form.save()
+                url = question.get_url()
+                return HttpResponseRedirect(url)
+        else:
+            form = AskForm()
+            return render(request, "ask_add.html", {
+                'form': form
+            })
     else:
-        form = AskForm()
-        return render(request, "ask_add.html", {
-            'form': form
-        })
+        return render(request, "auth_plz.html")
 
 def signup(request):
     if request.method == "POST":
