@@ -6,8 +6,9 @@
 <body>
     <h1>{{question.title}}</h1>
     <h3>{{question.text}}</h3>
+    <h3> Author: {{ question.author }}</h3>
     {%for answer in answers %}
-    <p>{{answer.text}}</p>
+    <p>{{answer.text}} (Answer by: {{ answer.author }})</p>
     {% endfor %}
     <form action="" method="post" >
         {% csrf_token %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+</head>
+<body>
+    <h1>Log In</h1>
+    <form action="", method="post">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <button type="submit", value="Log in">Log In</button>
+    </form>
+    <a href="/signup/">SignUp!</a>
+</body>
+</html>
